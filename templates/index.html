@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mwidu Happiness – Anxiety Awareness Tool</title>
+    <title>Mwidu Happiness</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -18,27 +18,17 @@
         Research-based awareness and general guidance on anxiety.
     </p>
 
-    <!-- 🧠 MENTAL AWARENESS FACT -->
-    <div class="mental-fact">
-        <strong>🧠 Mental Awareness Fact</strong>
-        <p>{{ mental_fact }}</p>
+    <!-- FACT BOX -->
+    <div class="fact-box">
+        <h3>🧠 {{ title }}</h3>
+        <p>{{ fact }}</p>
     </div>
 
-    <!-- SEARCH -->
-    <form id="searchForm">
-        <input
-            type="text"
-            id="queryInput"
-            placeholder="Type your question and press Enter"
-            required
-            autofocus
-        >
-    </form>
-
-    <!-- RESPONSE -->
-    <div id="responseBox" class="response" style="display:none;">
-        <h3>Answer</h3>
-        <p id="responseText"></p>
+    <!-- BUTTONS -->
+    <div class="quick-buttons">
+        <a href="/?type=calm"><button>😌 Calm anxiety</button></a>
+        <a href="/?type=why"><button>💭 Why anxiety happens</button></a>
+        <a href="/?type=symptoms"><button>🧠 Anxiety symptoms</button></a>
     </div>
 
     <p class="disclaimer">
@@ -46,27 +36,6 @@
     </p>
 
 </div>
-
-<script>
-const form = document.getElementById("searchForm");
-const input = document.getElementById("queryInput");
-const responseBox = document.getElementById("responseBox");
-const responseText = document.getElementById("responseText");
-
-form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const res = await fetch("/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: input.value })
-    });
-
-    const data = await res.json();
-    responseText.innerText = data.response;
-    responseBox.style.display = "block";
-});
-</script>
 
 </body>
 </html>
