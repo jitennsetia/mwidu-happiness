@@ -1,0 +1,96 @@
+body {
+    background: #f4f6f8;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.container {
+    width: 420px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* LOGO */
+.logo img {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #000;
+}
+
+/* RESPONSE */
+.response {
+    margin-top: 25px;
+    background: #eef5ff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+    font-size: 11px;
+    color: #888;
+    margin-top: 25px;
+}
+/* QUICK BUTTONS */
+.quick-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.quick-buttons button {
+    background: #eef2f7;
+    border: 1px solid #d0d7e2;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #333;          /* 🔥 THIS FIXES BLUR */
+    font-weight: 500;     /* 🔥 MAKES TEXT SHARP */
+    cursor: pointer;
+    opacity: 1;           /* 🔥 ENSURES NOT FADED */
+}
+
+.quick-buttons button:hover {
+    background: #e2e8f0;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anxiety Search Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Mwidu Happiness">
+        </div>
+
+        <h1>Anxiety Search Tool</h1>
+
+        <p class="subtitle">
+            Ask anything about anxiety. This tool provides general guidance only.
+        </p>
+
+        <!-- SEARCH FORM -->
+   <form method="POST" id="searchForm">
+    <input
+        type="text"
+        id="queryInput"
+        name="query"
+        placeholder="Type your question and press Enter"
+        required
+        autofocus
+    >
+</form>
+
+<!-- QUICK BUTTONS -->
+<div class="quick-buttons">
+    <button type="button" onclick="quickSearch('How can I calm my anxiety right now?')">😌 Calm me now</button>
+    <button type="button" onclick="quickSearch('Why does anxiety happen?')">💭 Why anxiety happens</button>
+    <button type="button" onclick="quickSearch('What are the symptoms of anxiety?')">🧠 Anxiety symptoms</button>
+</div>
+
+
+        {% if response %}
+        <div class="response">
+            <h3>Answer</h3>
+            <p>{{ response }}</p>
+        </div>
+        {% endif %}
+
+        <p class="disclaimer">
+            ⚠️ This is not a substitute for professional medical advice.
+        </p>
+
+    </div>
+<script>
+function quickSearch(text) {
+    const input = document.getElementById("queryInput");
+    const form = document.getElementById("searchForm");
+
+    input.value = text;
+    form.submit();
+}
+</script>
+
+</body>
+</html>
