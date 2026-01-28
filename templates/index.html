@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mwidu Happiness</title>
+    <title>Solutions to Anxiety</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="container">
 
+    <!-- LOGO -->
     <div class="logo">
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Mwidu Happiness">
     </div>
 
-    <h1>Anxiety Search Tool</h1>
+    <!-- TITLE -->
+    <h1>Solutions to Anxiety</h1>
 
     <p class="subtitle">
-        Research-based awareness and general guidance on anxiety.
+        Research-based awareness and calm guidance for anxious minds.
     </p>
 
-    <!-- FACT BOX -->
-    <div class="fact-box">
-        <h3>🧠 {{ title }}</h3>
-        <p>{{ fact }}</p>
+    <!-- MENTAL AWARENESS FACT (STATIC / DAILY UPDATED BY YOU) -->
+    <div class="response" id="factBox">
+        <h3>🧠 Mental Awareness Fact of the Day</h3>
+        <p>
+            Anxiety cannot stay forever. When the nervous system feels safety,
+            it naturally returns to calm.
+        </p>
     </div>
 
-    <!-- BUTTONS -->
+    <!-- ACTION BUTTONS -->
     <div class="quick-buttons">
-        <a href="/?type=calm"><button>😌 Calm anxiety</button></a>
-        <a href="/?type=why"><button>💭 Why anxiety happens</button></a>
-        <a href="/?type=symptoms"><button>🧠 Anxiety symptoms</button></a>
+        <button onclick="showAnswer('calm')">😌 Calm anxiety</button>
+        <button onclick="showAnswer('why')">💭 Why anxiety happens</button>
+        <button onclick="showAnswer('symptoms')">🧠 Anxiety symptoms</button>
+    </div>
+
+    <!-- ANSWER BOX (DYNAMIC, SEPARATE) -->
+    <div class="response" id="answerBox" style="display:none;">
+        <h3 id="answerTitle"></h3>
+        <p id="answerText"></p>
     </div>
 
     <p class="disclaimer">
@@ -36,6 +47,34 @@
     </p>
 
 </div>
+
+<script>
+function showAnswer(type) {
+    const box = document.getElementById("answerBox");
+    const title = document.getElementById("answerTitle");
+    const text = document.getElementById("answerText");
+
+    box.style.display = "block";
+
+    if (type === "calm") {
+        title.innerText = "😌 How to Calm Anxiety";
+        text.innerText =
+            "Slow breathing, grounding techniques, and reminding yourself that anxiety is temporary can help the nervous system settle.";
+    }
+
+    if (type === "why") {
+        title.innerText = "💭 Why Anxiety Happens";
+        text.innerText =
+            "Anxiety occurs when the brain detects threat. Sometimes this threat is real, and sometimes it is learned or imagined.";
+    }
+
+    if (type === "symptoms") {
+        title.innerText = "🧠 Common Anxiety Symptoms";
+        text.innerText =
+            "Racing thoughts, tight chest, restlessness, shallow breathing, and fear without clear reason are common anxiety symptoms.";
+    }
+}
+</script>
 
 </body>
 </html>
