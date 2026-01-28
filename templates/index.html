@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Anxiety Search Tool</title>
+    <title>Mwidu Happiness – Anxiety Awareness Tool</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <!-- LOGO -->
-        <div class="logo">
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="Mwidu Happiness">
-        </div>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Mwidu Happiness">
+    </div>
 
-        <h1>Anxiety Search Tool</h1>
+    <h1>Anxiety Search Tool</h1>
 
-        <p class="subtitle">
-            Ask anything about anxiety. This tool provides general guidance only.
-        </p>
+    <p class="subtitle">
+        Research-based awareness and general guidance on anxiety.
+    </p>
 
-        <!-- SEARCH FORM -->
-   <form method="POST" id="searchForm">
-    <input
-        type="text"
-        id="queryInput"
-        name="query"
-        placeholder="Type your question and press Enter"
-        required
-        autofocus
-    >
-</form>
+    <!-- 🧠 MENTAL AWARENESS FACT -->
+    <div class="mental-fact">
+        <strong>🧠 Mental Awareness Fact</strong>
+        <p>{{ mental_fact }}</p>
+    </div>
 
-<!-- QUICK BUTTONS -->
-<div class="quick-buttons">
-    <button type="button" onclick="quickSearch('How can I calm my anxiety right now?')">😌 Calm me now</button>
-    <button type="button" onclick="quickSearch('Why does anxiety happen?')">💭 Why anxiety happens</button>
-    <button type="button" onclick="quickSearch('What are the symptoms of anxiety?')">🧠 Anxiety symptoms</button>
+    <!-- SEARCH -->
+    <form id="searchForm">
+        <input
+            type="text"
+            id="queryInput"
+            placeholder="Type your question and press Enter"
+            required
+            autofocus
+        >
+    </form>
+
+    <!-- RESPONSE -->
+    <div id="responseBox" class="response" style="display:none;">
+        <h3>Answer</h3>
+        <p id="responseText"></p>
+    </div>
+
+    <p class="disclaimer">
+        ⚠️ This tool provides general information only and is not a substitute for professional medical advice.
+    </p>
+
 </div>
 
-
-        {% if response %}
-        <div class="response">
-            <h3>Answer</h3>
-            <p>{{ response }}</p>
-        </div>
-        {% endif %}
-
-        <p class="disclaimer">
-            ⚠️ This is not a substitute for professional medical advice.
-        </p>
-
-    </div>
 <script>
-function quickSearch(text) {
-    const input = document.getElementById("queryInput");
-    const form = document.getElementById("searchForm");
+const form = document.getElementById("searchForm");
+const input = document.getElementById("queryInput");
+const responseBox = document.getElementById("responseBox");
+const responseText = document.getElementById("responseText");
 
-    input.value = text;
-    form.submit();
-}
+form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const res = await fetch("/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: input.value })
+    });
+
+    const data = await res.json();
+    responseText.innerText = data.response;
+    responseBox.style.display = "block";
+});
 </script>
 
 </body>
